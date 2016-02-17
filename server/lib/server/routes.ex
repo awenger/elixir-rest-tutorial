@@ -5,8 +5,10 @@ defmodule Server.Routes do
   plug :dispatch
 
   get "/" do
+    data = %{message: "Hello World!"}
     conn
-      |> send_resp(200, "Hello World")
+      |> put_resp_header("content-type","application/json")
+      |> send_resp(200, Poison.encode!(data))
   end
 
   match _ do
