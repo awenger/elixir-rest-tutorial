@@ -15,7 +15,7 @@ defmodule Server.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     [applications: [:logger],
-     mod: {Server, []}]
+     mod: {Server, [:cowboy, :plug, :poison]}]
   end
 
   # Dependencies can be Hex packages:
@@ -28,6 +28,8 @@ defmodule Server.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{:cowboy, "~> 1.0.4"},
+     {:plug, "~> 1.1.0"},
+     {:poison, "~> 1.4.0"}]
   end
 end
