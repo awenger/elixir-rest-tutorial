@@ -1,12 +1,12 @@
 # Part 1 - Basic Setup
 This part is all about providing the baseline for this tutorial. We are going to create a new Elixir project with mix, setup the first dependencies and wire it all together. The final result is a web service saying Hello World in JSON.
 
-### Project Setup 2cc777cb1e0ee875339b8784bf9e431828b171ea
+### Project Setup [2cc777c](https://github.com/awenger/elixir-rest-tutorial/commit/2cc777cb1e0ee875339b8784bf9e431828b171ea)
 The new Elixir project `server` is created with mix. The parameter `--sup` tells mix to generate an OTP application skeleton including a supervision tree. This will be later used to supervise the different parts of the server.
 ```
 mix new server --sup
 ```
-### Dependencies 22b3653a8822f44ad365725d17bb6c9eb6c71405
+### Dependencies [22b3653](https://github.com/awenger/elixir-rest-tutorial/commit/22b3653a8822f44ad365725d17bb6c9eb6c71405)
 The basic web service has several dependencies, that are configured in the `mix.exs` file:
 ```elixir
   def application do
@@ -35,7 +35,7 @@ About the dependencies:
 
  > An incredibly fast, pure Elixir JSON library
 
-### Basic Server 089dfef0ca1af3cf71652875f4df88ae5a9e2f8b
+### Basic Server [089dfef](https://github.com/awenger/elixir-rest-tutorial/commit/089dfef0ca1af3cf71652875f4df88ae5a9e2f8b)
 Now that all the dependencies are in place we can wire it all together into a simple web service. The first step therefor is to add the plug adapter as a supervised child to our application `server.ex`:
 ```elixir
     children = [
@@ -70,7 +70,7 @@ this provides the default [route](http://localhost:8080/) and a [fallback route]
   end
 ```
 
-### Serve JSON c5db27f08e011e0e471fe805d959627948440bf9
+### Serve JSON [c5db27f](https://github.com/awenger/elixir-rest-tutorial/commit/c5db27f08e011e0e471fe805d959627948440bf9)
 The last step in this part is to use JSON instead of plain text to say Hello World. This message is provided as Elixir map (`%{key: value}`). We utilize poison to encode this message in the JSON format and serve it with the appropriate `Content-Type` header at our default route:
 ```elixir
   get "/" do
