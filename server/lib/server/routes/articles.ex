@@ -7,34 +7,31 @@ defmodule Server.Routes.Articles do
   plug :dispatch
 
   get "/" do
-    data = [
-      %Data.Article{id: 1, href: "http://example.com/article1", title: "Funny Article"},
-      %Data.Article{id: 2, href: "http://example.com/article2", title: "Important Article"}
-    ]
-
+    data = Storage.Articles.list()
     conn
-      |> put_resp_header("Content-Type","application/json")
+      |> set_json_resp
       |> send_resp(200, Poison.encode!(data))
   end
 
   get "/:aid" do
-    data = %Data.Article{id: 1, href: "http://example.com/article1", title: "Funny Article"}
+    data = Storage.Articles.find(aid)
 
-    conn
-      |> put_resp_header("Content-Type","application/json")
-      |> send_resp(200, Poison.encode!(data))
+    case data do
+      nil -> conn |> set_json_resp |> send_resp(404, Poison.encode!(%{message: "not found"}))
+      data -> conn |> set_json_resp |> send_resp(200, Poison.encode!(data))
+    end
   end
 
   post "/" do
     new_article = Data.Article.from_json_map(conn.params)
-    new_article = %Data.Article{new_article| id: "123"}
 
-    IO.puts "got:"
-    IO.inspect new_article
+    new_article = Storage.Articles.create(new_article)
 
     conn
       |> put_resp_header("Location","/news/" <> new_article.id)
       |> send_resp(201,"")
   end
+
+  defp set_json_resp(conn), do: conn |> put_resp_header("Content-Type","application/json")
 
 end
