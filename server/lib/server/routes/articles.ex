@@ -28,7 +28,7 @@ defmodule Server.Routes.Articles do
     new_article = Storage.Articles.create(new_article)
 
     conn
-      |> put_resp_header("Location","/news/" <> new_article.id)
+      |> put_resp_header("Location","/articles/" <> new_article.id)
       |> send_resp(201,"")
   end
 
