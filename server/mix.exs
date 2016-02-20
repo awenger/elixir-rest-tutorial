@@ -29,7 +29,7 @@ defmodule Server.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [{:cowboy, "~> 1.0.4"},
-     {:plug, "~> 1.1.0"},
-     {:poison, "~> 1.4.0"}]
+     {:plug, "~> 1.1.1"},
+     {:poison, "~> 2.1.0"}]
   end
 end
