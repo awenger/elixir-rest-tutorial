@@ -11,6 +11,8 @@ defmodule Server.Routes do
       |> send_resp(200, Poison.encode!(data))
   end
 
+  forward "/articles", to: Server.Routes.Articles
+
   match _ do
     send_resp(conn, 404, "you shall not pass")
   end

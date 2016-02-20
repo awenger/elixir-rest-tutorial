@@ -8,4 +8,5 @@ My experience and knowledge about Elixir is very basic. So be prepared to find m
 
 ## Tutorial
 
-### [Part 1 - Basic Setup](./tutorial/part1.md)
+#### [Part 1 - Basic Setup](./tutorial/part1.md)
+#### [Part 2 - The first REST resource (Work in progress)](./tutorial/part2.md)
